@@ -9,16 +9,17 @@ void splash_window_load(Window *window)  {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "splash load");
   
   Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
   
   // splash image
   splash_image = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_REMOTE_CONTROL_SMALL);
-  splash_image_layer = bitmap_layer_create(GRect(0, 0, 144, 120));
+  splash_image_layer = bitmap_layer_create(GRect(0, 0, bounds.size.w, 120));
     
   bitmap_layer_set_bitmap(splash_image_layer, splash_image);
   bitmap_layer_set_compositing_mode(splash_image_layer, GCompOpSet);
   
   // splash title
-  splash_title_layer = text_layer_create(GRect(0, 120, 144, 48));
+  splash_title_layer = text_layer_create(GRect(0, 120, bounds.size.w, 48));
   text_layer_set_text(splash_title_layer, "Philips TV RC");
   text_layer_set_text_alignment(splash_title_layer, GTextAlignmentCenter);
   
