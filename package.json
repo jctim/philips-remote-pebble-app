@@ -1,6 +1,6 @@
 {
   "name": "philips-remote-pebble-app",
-  "author": "tkachuk.i.m@gmail.com",
+  "author": "Ilya Tkachuk",
   "version": "1.0.0",
   "keywords": ["pebble-app"],
   "private": true,
@@ -34,6 +34,18 @@
           "type": "bitmap"
         },
         {
+          "file": "images/remote-control-64.png",
+          "name": "IMAGE_REMOTE_CONTROL_SMALL",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
+          "file": "images/remote-control-128.png",
+          "name": "IMAGE_REMOTE_CONTROL_LARGE",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
           "file": "images/vol-down-16.png",
           "name": "IMAGE_VOLUME_DOWN",
           "targetPlatforms": null,
@@ -54,18 +66,6 @@
         {
           "file": "images/play-16.png",
           "name": "IMAGE_PLAY",
-          "targetPlatforms": null,
-          "type": "bitmap"
-        },
-        {
-          "file": "images/remote-control-128.png",
-          "name": "IMAGE_REMOTE_CONTROL_LARGE",
-          "targetPlatforms": null,
-          "type": "bitmap"
-        },
-        {
-          "file": "images/remote-control-64.png",
-          "name": "IMAGE_REMOTE_CONTROL_SMALL",
           "targetPlatforms": null,
           "type": "bitmap"
         }
