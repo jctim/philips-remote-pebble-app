@@ -1,29 +1,75 @@
 {
-  "name": "philips-remote-pebble",
-  "author": "MakeAwesomeHappen",
+  "name": "philips-remote-pebble-app",
+  "author": "tkachuk.i.m@gmail.com",
   "version": "1.0.0",
   "keywords": ["pebble-app"],
   "private": true,
   "dependencies": {},
   "pebble": {
-    "displayName": "philips-remote-pebble",
+    "displayName": "Philips TV RC",
     "uuid": "ee8a44cc-0659-4142-b736-ef2ac09b1295",
     "sdkVersion": "3",
+    "projectType": "native",
     "enableMultiJS": true,
     "targetPlatforms": [
-      "aplite",
       "basalt",
-      "chalk",
       "diorite"
     ],
     "watchapp": {
       "watchface": false
     },
     "messageKeys": [
-      "dummy"
+      "RC_KEY"
+    ],
+    "capabilities": [
+      "configurable"
     ],
     "resources": {
-      "media": []
+      "media": [
+        {
+          "file": "images/remote-control-16.png",
+          "menuIcon": true,
+          "name": "IMAGE_REMOTE_CONTROL_ICON",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
+          "file": "images/vol-down-16.png",
+          "name": "IMAGE_VOLUME_DOWN",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
+          "file": "images/vol-up-16.png",
+          "name": "IMAGE_VOLUME_UP",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
+          "file": "images/pause-16.png",
+          "name": "IMAGE_PAUSE",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
+          "file": "images/play-16.png",
+          "name": "IMAGE_PLAY",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
+          "file": "images/remote-control-128.png",
+          "name": "IMAGE_REMOTE_CONTROL_LARGE",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        },
+        {
+          "file": "images/remote-control-64.png",
+          "name": "IMAGE_REMOTE_CONTROL_SMALL",
+          "targetPlatforms": null,
+          "type": "bitmap"
+        }
+      ]
     }
   }
 }
