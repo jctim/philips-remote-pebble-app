@@ -28,44 +28,44 @@
     "resources": {
       "media": [
         {
-          "file": "images/remote-control-16.png",
+          "file": "images/remote_control_16.png",
           "menuIcon": true,
           "name": "IMAGE_REMOTE_CONTROL_ICON",
           "targetPlatforms": null,
           "type": "bitmap"
         },
         {
-          "file": "images/remote-control-64.png",
+          "file": "images/remote_control_64.png",
           "name": "IMAGE_REMOTE_CONTROL_SMALL",
           "targetPlatforms": null,
           "type": "bitmap"
         },
         {
-          "file": "images/remote-control-128.png",
+          "file": "images/remote_control_128.png",
           "name": "IMAGE_REMOTE_CONTROL_LARGE",
           "targetPlatforms": null,
           "type": "bitmap"
         },
         {
-          "file": "images/vol-down-16.png",
+          "file": "images/icon_volume_down.png",
           "name": "IMAGE_VOLUME_DOWN",
           "targetPlatforms": null,
           "type": "bitmap"
         },
         {
-          "file": "images/vol-up-16.png",
+          "file": "images/icon_volume_up.png",
           "name": "IMAGE_VOLUME_UP",
           "targetPlatforms": null,
           "type": "bitmap"
         },
         {
-          "file": "images/pause-16.png",
+          "file": "images/icon_pause.png",
           "name": "IMAGE_PAUSE",
           "targetPlatforms": null,
           "type": "bitmap"
         },
         {
-          "file": "images/play-16.png",
+          "file": "images/icon_play.png",
           "name": "IMAGE_PLAY",
           "targetPlatforms": null,
           "type": "bitmap"
