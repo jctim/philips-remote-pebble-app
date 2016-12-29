@@ -1,3 +1,39 @@
+var Clay = require('pebble-clay');
+var clayConfig = require('./config.json');
+var clay = new Clay(clayConfig, null, { autoHandleEvents: false });
+
+Pebble.addEventListener('showConfiguration', function(e) {
+  Pebble.openURL(clay.generateUrl());
+});
+
+Pebble.addEventListener('webviewclosed', function(e) {
+  if (e && !e.response) {
+    return;
+  }
+  var dict = clay.getSettings(e.response);
+  console.log(JSON.stringify(dict));
+  // // Send settings values to watch side
+  // Pebble.sendAppMessage(dict, function(e) {
+  //   console.log('Sent config data to Pebble');
+  // }, function(e) {
+  //   console.log('Failed to send config data!');
+  //   console.log(JSON.stringify(e));
+  // });
+  
+  var currentTvIpAddress = dict['10001'];
+  localStorage.setItem('TV_IP_ADDRESS', currentTvIpAddress);
+});
+
+var DEFAULT_TV_IP_ADDRESS = '192.168.1.98';
+
+function getStorageValue(item){
+    var retVal = localStorage.getItem(item);
+    if (retVal == null || retVal == 'undefined' || retVal == 'null'){
+        retVal = DEFAULT_TV_IP_ADDRESS;
+    }
+    return retVal;
+}
+
 Pebble.addEventListener("ready", function(e) {
   console.log("Ready for interaction");
   
@@ -28,15 +64,13 @@ Pebble.addEventListener('appmessage', function(e) {
   }
 });
 
-var tvIP = ''; // TODO move to settings 
-
-function create_url(ip, apiMethod) {
-  return 'http://' + ip + ':1925/1/' + apiMethod;
+function create_url(apiMethod) {
+  return 'http://' + getStorageValue('TV_IP_ADDRESS') + ':1925/1/' + apiMethod;
 }
 
 function sendRequest(httpMethod, apiMethod, data) {
   var request = new XMLHttpRequest();
-  var url = create_url(tvIP, apiMethod);
+  var url = create_url(apiMethod);
 
   var dataMessage = {};
   if (data) {
