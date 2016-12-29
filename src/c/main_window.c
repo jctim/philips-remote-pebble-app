@@ -22,7 +22,7 @@ void volume_down_click_handler() {
 
 void play_pause_click_handler() {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "play/pause pressed");
-  send_api_message("POST_INPUT_KEY", "PlayPause");
+  send_api_message("POST_INPUT_KEY", "Confirm");
 }
 
 void click_config_provider(void *context) {
@@ -66,7 +66,7 @@ void setup_volume_text(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(volume_text_layer));
   
   // TODO update in a cycle
-  send_api_message_with_callback("GET_AUDIO_VOLUME", NULL, NULL /* TODO callback for getting result*/);
+  send_api_message_with_callback("GET_AUDIO_VOLUME", "", NULL /* TODO callback for getting result*/);
 }
 
 void main_window_load(Window *window)  {
