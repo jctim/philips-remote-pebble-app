@@ -20,8 +20,10 @@
     },
     "messageKeys": [
       "JS_READY",
-      "RC_METHOD",
-      "RC_KEY"
+      "REQ_COMMAND",
+      "REQ_DATA",
+      "RESP_VOLUME_MUTED",
+      "RESP_VOLUME_CURRENT"
     ],
     "capabilities": [
       "configurable"

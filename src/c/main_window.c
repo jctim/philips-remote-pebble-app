@@ -8,19 +8,21 @@ GBitmap *vol_up_button;
 GBitmap *vol_down_button;
 GBitmap *play_button;
 
+TextLayer *volume_text_layer;
+
 void volume_up_click_handler() {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "volume up pressed");
-  send_post_message("VolumeUp");
+  send_api_message("POST_INPUT_KEY", "VolumeUp");
 }
 
 void volume_down_click_handler() {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "volume down pressed");  
-  send_post_message("VolumeDown");
+  send_api_message("POST_INPUT_KEY", "VolumeDown");
 }
 
 void play_pause_click_handler() {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "play/pause pressed");
-  send_post_message("PlayPause");
+  send_api_message("POST_INPUT_KEY", "PlayPause");
 }
 
 void click_config_provider(void *context) {
@@ -53,9 +55,29 @@ void setup_action_bar_layer(Window *window) {
   action_bar_layer_add_to_window(action_bar_layer, window);
 }
 
+void setup_volume_text(Window *window) {
+  Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
+  
+  volume_text_layer = text_layer_create(GRect(0, 120, bounds.size.w - ACTION_BAR_WIDTH, 48));
+  text_layer_set_text(volume_text_layer, "Volume: ");
+  text_layer_set_text_alignment(volume_text_layer, GTextAlignmentCenter);
+  
+  layer_add_child(window_layer, text_layer_get_layer(volume_text_layer));
+  
+  // TODO update in a cycle
+  send_api_message_with_callback("GET_AUDIO_VOLUME", NULL, NULL /* TODO callback for getting result*/);
+}
+
 void main_window_load(Window *window)  {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "main load");
   
+  Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
+  
+  // volume title
+  setup_volume_text(window);
+  // action bar
   setup_action_bar_layer(window);
 }
 
@@ -66,6 +88,7 @@ void main_window_unload(Window *window)  {
   gbitmap_destroy(vol_up_button);
   gbitmap_destroy(vol_down_button);
   gbitmap_destroy(play_button);
+  text_layer_destroy(volume_text_layer);
 }
 
 void main_window_create() {

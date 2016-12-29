@@ -17,16 +17,32 @@ Pebble.addEventListener('appmessage', function(e) {
   console.log("Received message " + JSON.stringify(e));
   console.log("Message payload " + JSON.stringify(e.payload));
   
-  sendRequest(e.payload.RC_KEY, e.payload.RC_METHOD);
+  var command = e.payload.REQ_COMMAND;
+  
+  if (command == "POST_INPUT_KEY") {
+    sendRequest('POST', 'input/key', e.payload.REQ_DATA);
+  } else if (command == "GET_AUDIO_VOLUME") {
+    sendRequest('GET', 'audio/volume', null);
+  } else {
+    console.log('No chance to send message to API: ' + command);
+  }
 });
 
 var tvIP = ''; // TODO move to settings 
-var url = 'http://' + tvIP + ':1925/1/input/key';
 
-function sendRequest(key, method) {
-  var keyMessage = {"key": key};
+function create_url(ip, apiMethod) {
+  return 'http://' + ip + ':1925/1/' + apiMethod;
+}
+
+function sendRequest(httpMethod, apiMethod, data) {
   var request = new XMLHttpRequest();
-  console.log("Will send " + method + " message " + JSON.stringify(keyMessage) + " to url " + url + " via requst " + request);
+  var url = create_url(tvIP, apiMethod);
+
+  var dataMessage = {};
+  if (data) {
+    var dataMessage = {"key": data};
+  }
+  console.log("Will send " + httpMethod + " message " + JSON.stringify(dataMessage) + " to url " + url + " via requst " + request);
   
   request.onload = function() {
     console.log('LOAD: Got response: ' + this.responseText);
@@ -37,8 +53,8 @@ function sendRequest(key, method) {
   request.onreadystatechange = function() {
     console.log('CHANGE: Got response: ' + this.responseText);
   };
-  request.open(method, url);
+  request.open(httpMethod, url);
   request.setRequestHeader('Accept', 'application/json');
   request.setRequestHeader('Content-Type', 'application/json');
-  request.send(JSON.stringify(keyMessage));
+  request.send(JSON.stringify(dataMessage));
 }

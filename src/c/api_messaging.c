@@ -1,14 +1,19 @@
 #include <pebble.h>
 #include "api_messaging.h"
 
-bool js_ready;
+bool _js_ready;
 
 static void inbox_received_callback(DictionaryIterator *iter, void *context) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "received message");
+  
+  // look for JS_READY message
   Tuple *t = dict_find(iter, MESSAGE_KEY_JS_READY);
   if (t) {
-    js_ready = true;
+    _js_ready = true;
   }
+  
+  // look for other messages
+  
 }
 
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {
@@ -38,29 +43,26 @@ void api_messaging_destroy() {
   app_message_deregister_callbacks();
 }
 
-void send_a_message(char *data, char *method) {
-  if (!js_ready) {
+void send_api_message_with_callback(char *command, char *data, void *callback) {
+  if (!_js_ready) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "JS is not ready yet. Try later");
   }
   DictionaryIterator *iter;
   AppMessageResult result = app_message_outbox_begin(&iter);
   if (result == APP_MSG_OK) {
     // construct
-    dict_write_cstring(iter, MESSAGE_KEY_RC_METHOD, method);
-    dict_write_cstring(iter, MESSAGE_KEY_RC_KEY, data);
+    dict_write_cstring(iter, MESSAGE_KEY_REQ_COMMAND, command);
+    dict_write_cstring(iter, MESSAGE_KEY_REQ_DATA, data);
     result = app_message_outbox_send();
     if (result != APP_MSG_OK) {    
       APP_LOG(APP_LOG_LEVEL_ERROR, "Error sending the outbox: %d", (int) result);
     }
+    // TODO register the callback
   } else {
     APP_LOG(APP_LOG_LEVEL_ERROR, "Error preparing outbox: %d", (int) result);
   }
 }
 
-void send_get_message(char *data) {
-  send_a_message(data, "GET");
-}
-
-void send_post_message(char *data) {
-  send_a_message(data, "POST");
+void send_api_message(char *command, char *data) {
+  send_api_message_with_callback(command, data, NULL);
 }
