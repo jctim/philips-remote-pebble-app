@@ -1,84 +1,84 @@
 {
-  "name": "philips-remote-pebble-app",
-  "author": "Ilya Tkachuk",
-  "version": "1.0.0",
-  "keywords": [
-    "pebble-app"
-  ],
-  "private": true,
-  "dependencies": {
-    "pebble-clay": "^1.0.4"
-  },
-  "pebble": {
-    "displayName": "Philips TV RC",
-    "uuid": "ee8a44cc-0659-4142-b736-ef2ac09b1295",
-    "sdkVersion": "3",
-    "projectType": "native",
-    "enableMultiJS": true,
-    "targetPlatforms": [
-      "basalt",
-      "diorite"
-    ],
-    "watchapp": {
-      "watchface": false
+    "author": "Ilya Tkachuk",
+    "dependencies": {
+        "pebble-clay": "^1.0.4"
     },
-    "messageKeys": [
-      "JS_READY",
-      "TV_IP_ADDRESS",
-      "REQ_COMMAND",
-      "REQ_DATA",
-      "RESP_VOLUME_MUTED",
-      "RESP_VOLUME_CURRENT"
+    "keywords": [
+        "pebble-app"
     ],
-    "capabilities": [
-      "configurable"
-    ],
-    "resources": {
-      "media": [
-        {
-          "file": "images/remote_control_16.png",
-          "menuIcon": true,
-          "name": "IMAGE_REMOTE_CONTROL_ICON",
-          "targetPlatforms": null,
-          "type": "bitmap"
+    "name": "philips-remote-pebble-app",
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        "displayName": "Philips TV RC",
+        "enableMultiJS": true,
+        "messageKeys": [
+            "JS_READY",
+            "TV_IP_ADDRESS",
+            "REQ_COMMAND",
+            "REQ_DATA",
+            "RESP_VOLUME_MUTED",
+            "RESP_VOLUME_CURRENT"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/remote_control_64.png",
+                    "name": "IMAGE_REMOTE_CONTROL_SMALL",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/remote_control_16.png",
+                    "menuIcon": true,
+                    "name": "IMAGE_REMOTE_CONTROL_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/remote_control_128.png",
+                    "name": "IMAGE_REMOTE_CONTROL_LARGE",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/icon_volume_up.png",
+                    "name": "IMAGE_VOLUME_UP",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/icon_volume_down.png",
+                    "name": "IMAGE_VOLUME_DOWN",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/icon_play.png",
+                    "name": "IMAGE_PLAY",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/icon_pause.png",
+                    "name": "IMAGE_PAUSE",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                }
+            ]
         },
-        {
-          "file": "images/remote_control_64.png",
-          "name": "IMAGE_REMOTE_CONTROL_SMALL",
-          "targetPlatforms": null,
-          "type": "bitmap"
-        },
-        {
-          "file": "images/remote_control_128.png",
-          "name": "IMAGE_REMOTE_CONTROL_LARGE",
-          "targetPlatforms": null,
-          "type": "bitmap"
-        },
-        {
-          "file": "images/icon_volume_down.png",
-          "name": "IMAGE_VOLUME_DOWN",
-          "targetPlatforms": null,
-          "type": "bitmap"
-        },
-        {
-          "file": "images/icon_volume_up.png",
-          "name": "IMAGE_VOLUME_UP",
-          "targetPlatforms": null,
-          "type": "bitmap"
-        },
-        {
-          "file": "images/icon_pause.png",
-          "name": "IMAGE_PAUSE",
-          "targetPlatforms": null,
-          "type": "bitmap"
-        },
-        {
-          "file": "images/icon_play.png",
-          "name": "IMAGE_PLAY",
-          "targetPlatforms": null,
-          "type": "bitmap"
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "diorite"
+        ],
+        "uuid": "ee8a44cc-0659-4142-b736-ef2ac09b1295",
+        "watchapp": {
+            "watchface": false
         }
-      ]
-    }
-  }
+    },
+    "version": "1.0.0"
 }

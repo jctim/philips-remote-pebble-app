@@ -1,6 +1,2 @@
-#pragma once
-#include <pebble.h>
-
-void splash_window_create();
-void splash_window_destroy();
-Window *splash_window_get_window();
+void show_splash_window(void);
+void hide_splash_window(void);

@@ -4,7 +4,7 @@
 bool _js_ready;
 
 static void inbox_received_callback(DictionaryIterator *iter, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "received message, dict_size=%d", dict_size(iter));
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "received message, dict_size=%d", (int)dict_size(iter));
   
   Tuple *t = dict_read_first(iter);
   while(t) {
@@ -20,7 +20,7 @@ static void inbox_received_callback(DictionaryIterator *iter, void *context) {
   
   // look for other messages
 
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "after: received message, dict_size=%d", dict_size(iter));  
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "after: received message, dict_size=%d", (int)dict_size(iter));  
 }
 
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {
@@ -28,11 +28,11 @@ static void inbox_dropped_callback(AppMessageResult reason, void *context) {
 }
 
 static void outbox_sent_callback(DictionaryIterator *iter, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "sent message, dict_size=%d", dict_size(iter));
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "sent message, dict_size=%d", (int)dict_size(iter));
 }
 
 static void outbox_failed_callback(DictionaryIterator *iter, AppMessageResult reason, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "failed message, reason=%d, dict_size=%d", reason, dict_size(iter));
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "failed message, reason=%d, dict_size=%d", reason, (int)dict_size(iter));
   
   // TODO just to understand what the hack is going on
   // Tuple *t = dict_read_first(iter);

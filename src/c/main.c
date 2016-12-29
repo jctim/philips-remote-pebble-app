@@ -1,5 +1,5 @@
 #include <pebble.h>
-#include "splash_window.h"
+#include "splash_window_prev.h"
 #include "main_window.h"
 #include "error_window.h"
 #include "api_messaging.h"
