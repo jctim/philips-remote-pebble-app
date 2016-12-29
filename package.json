@@ -20,6 +20,7 @@
     },
     "messageKeys": [
       "JS_READY",
+      "RC_METHOD",
       "RC_KEY"
     ],
     "capabilities": [
